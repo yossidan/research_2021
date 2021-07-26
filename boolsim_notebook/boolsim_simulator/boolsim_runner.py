@@ -27,7 +27,24 @@ from Utilities import *
 if __name__ == '__main__':
 #=======================================================================================================================
 
-    path_to_sim_inifile = "./_inputs/sim_1/sim_1.ini"
+    # exclude the first element from argv[].
+    paramsList = sys.argv[1:]
+    numArgs = len(paramsList)
+
+    # print(paramsList)
+    if numArgs < 1:
+        print("\n\n---> boolsim_runner expects at least 1 argument (relative path to ini file).\n")
+        sys.exit(1)
+    elif numArgs == 1:
+        pass
+    else:
+        print("\n\n---> boolsim_runner expects no more than 1 arguments: (1) relative path to ini file.\n")
+        sys.exit(1)
+
+    path_to_sim_inifile = paramsList[0]
+    # path_to_sim_inifile = "./_inputs/sim_1/sim_1.ini"
+
+    print("\n\n----> simulation inifile path is --> %s.\n\n" % path_to_sim_inifile)
 
     try:
         model = BooleanModel(path_to_sim_inifile)
